@@ -15,4 +15,4 @@ Example:            When a Player types a command, for example: request is sent 
                     discord-bot and needs to be allowed or declined with a command on discord, for example: !confirm or !deny   
 
 Raspberry Pi:       -upon a request being sent, the display lists the command that is 
-                    requested 
+                    requested and the user who requested it (minecraft username). 

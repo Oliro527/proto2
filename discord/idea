@@ -1,0 +1,18 @@
+PROTO2 Project ideas
+
+Game Control System
+
+Hierarchy:
+    -Digilab:       Emergency use, ignores rules and permissions and exectues command
+
+    -Discord:       Admin, is allowed to exectues commands and confirms requests from       
+                    Minecraft
+    
+    -Minecraft:     User, can send command requests to the discord bot, which have to be 
+                    allowed by a user on discord
+
+Example:            When a Player types a command, for example: request is sent to          
+                    discord-bot and needs to be allowed or declined with a command on discord, for example: !confirm or !deny   
+
+Raspberry Pi:       -upon a request being sent, the display lists the command that is 
+                    requested 

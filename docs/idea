@@ -14,5 +14,24 @@ Hierarchy:
 Example:            When a Player types a command, for example: request is sent to          
                     discord-bot and needs to be allowed or declined with a command on discord, for example: !confirm or !deny   
 
-Raspberry Pi:       -upon a request being sent, the display lists the command that is 
-                    requested and the user who requested it (minecraft username). 
+Raspberry Pi:       -upon a request being made, it is sent to node-red, on which it gets 
+                    sent to both the discord bot, which awaits a response from a user, and the digilab's display should show both the request type and user who requested it. LED could blink to show that a request has been made (turn the LED off with a button -> send message on minecraft saying the request is being worked on)
+
+Digilab:            -The digilab should be used as a way to manually activate commands but 
+                    also to get requests. Buttons will be mapped to sepcific commands each.
+
+Discord:            -Gets requests from Node-red, asks user on server (either any or user with specific roles) for permission to 
+                    execute said command. 
+                    -> Upon accepting: command gets executed
+                    -> Upon declining: command doesn't get executed and reason gets sent to the minecraft server (chat)
+                    -remote kick and restart commands. other commands such as give or spawn may be implemented.
+
+Node-Red:           -Flow for communication 
+                    Discord -> Node-RED -> Minecraft  
+                    Buttons -> Node-RED  
+                    Node-RED -> LEDs / LCD / Dashboard
+
+
+Dashboard:          -Shows informations on the server (playerCount, playerNames, isServerUp, errors)
+                    -Shows if and which requests are currently waiting approval
+

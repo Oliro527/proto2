@@ -34,4 +34,22 @@ Node-Red:           -Flow for communication
 
 Dashboard:          -Shows informations on the server (playerCount, playerNames, isServerUp, errors)
                     -Shows if and which requests are currently waiting approval
+                    -Potential button to accept or decline, depends on if request approval is needed from Dashboard
+                    and if discord and the digilab aren't enough or fully working. 
+
+
+Live Events:        Bad Events:        
+                                -Horde:     Spawns a group of mobs nearby player at random locations around the a randomly selected players
+                                -Big loss:  Poisons the player and gives them hunger
+                                -Death:     very rare but just kills the player
+
+
+                    Good Events:
+                                -Make it rain: Gift random amount of random ore to player
+                                -Inspiration: Gift player random amount of random positive effects
+                                -Another chance: Gift Player a totem
+
+
+Minigames:          -Luck-Games: Baccarat, Blackjack, Poker and Dice in discord which rewards a Player with 
+                                a good event on minecraft upon winning but also punishes them upon losing.
 

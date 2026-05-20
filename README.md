@@ -13,6 +13,7 @@ The system operates on three distinct authorization tiers to ensure controlled s
 * **Minecraft (Tier 3 - User)**: Submits command requests that remain pending until approved by a Discord administrator.
 
 ### Request Lifecycle Example
+[Minecraft Player] ──(Sends Request)──> [Discord Bot] ──(Awaits Admin)──> [!confirm / !deny]
 ---
 
 ## Component Specifications

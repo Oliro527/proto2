@@ -115,4 +115,4 @@ This system connects everything together:
 * **Node-RED** → Logic and automation
 * **Minecraft** → Game actions
 * **Raspberry Pi** → Physical control
-Authors: Tiago & Ronny
+*  Authors: Tiago & Ronny

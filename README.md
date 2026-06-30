@@ -1,64 +1,162 @@
-# PROTO2: Game Control System
+🎮 Minecraft Automation System
+This project connects Minecraft, Discord, and Node-RED to create an interactive game control system.
+It also supports Raspberry Pi hardware like buttons, LEDs, and an LCD screen.
+The goal is to control the Minecraft server, add fun features, and interact with the game from outside (Discord or hardware).
 
-A multi-platform game management and interactive event system that bridges Minecraft, Discord, Node-RED, and Digilab hardware (Raspberry Pi). The system introduces a strict hierarchical command structure, physical hardware overrides, live server events, and Discord-based gambling minigames that directly impact live gameplay.
+🚀 Features
 
----
 
-## System Hierarchy
+🎲 Dice Game (Discord + Minecraft)
+Play a dice game and get rewards or punishments in Minecraft.
 
-The system operates on three distinct authorization tiers to ensure controlled server management:
 
-* **Digilab (Tier 1 - Emergency Override)**: Ignores all rules and permissions to execute immediate physical commands.
-* **Discord (Tier 2 - Administrator)**: Reviews, confirms, or denies incoming user requests, and manages remote server controls.
-* **Minecraft (Tier 3 - User)**: Submits command requests that remain pending until approved by a Discord administrator.
+💎 Daily Reward System
+Players can collect diamonds once every 24 hours.
 
-### Request Lifecycle Example
-[Minecraft Player] ──(Sends Request)──> [Discord Bot] ──(Awaits Admin)──> [!confirm / !deny]
----
 
-## Component Specifications
+📊 Server Status Check
+See if the server is online and how many players are connected.
 
-### Raspberry Pi & Node-RED
-Node-RED acts as the central communication router connecting all software and hardware endpoints.
-* **Routing Flows**: Handles bidirectional data mapping:
-  * `Discord ➔ Node-RED ➔ Minecraft`
-  * `Physical Buttons ➔ Node-RED ➔ Minecraft / Discord`
-  * `Node-RED ➔ Hardware (LEDs / LCD / Dashboard)`
-* **Alert System**: When a Minecraft request arrives, Node-RED blinks a physical LED and pushes the request details to the Digilab hardware display.
-* **Ack Button**: Pressing a physical button turns off the alert LED and broadcasts an in-game message: *"Your request is currently being processed."*
 
-### Digilab Hardware Interface
-* **Inputs**: Physical buttons mapped directly to high-priority server commands for manual override execution.
-* **Outputs**: An LCD screen showing the active request type and the username of the requesting player.
+⚙️ Admin Commands from Discord
+Send Minecraft commands directly from Discord (admin only).
 
-### Discord Bot
-* **Gatekeeping**: Receives Node-RED payloads and prompts users with specific admin roles to approve or deny requests.
-* **Feedback Loop**: Denied requests prompt the admin for a reason, which is sent directly back to the Minecraft in-game chat.
-* **Remote Management**: Supports admin commands for remote player kicks, server restarts, item spawning, and entity distribution.
 
-### System Dashboard
-A web-based interface providing real-time telemetry and secondary controls:
-* **Server Health**: Displays `playerCount`, `playerNames`, `isServerUp`, and error logs.
-* **Queue Management**: Displays pending requests awaiting approval.
-* **Fallback Controls**: Optional buttons to approve or deny requests if Discord or Digilab interfaces are offline.
+🆘 Emergency Button
+Instantly kick all players using a physical button.
 
----
 
-## Dynamic Gameplay Features
+🔛 Server Start / Stop (Hardware Control)
+Control the server using Raspberry Pi buttons.
 
-### Live Events
-Administrators can trigger or automate positive and negative environmental modifiers.
 
-#### Malicious Events
-* **Horde**: Spawns a dense cluster of hostile mobs at random coordinates around a randomly targeted player.
-* **Big Loss**: Inflicts the target player with severe `Poison` and `Hunger` status effects.
-* **Death**: An incredibly rare trigger that instantly kills the targeted player.
+🌦️ Weather Integration
+Real-world weather changes the Minecraft weather.
 
-#### Beneficial Events
-* **Make it Rain**: Drops a random quantity of random ores directly into the player's inventory.
-* **Inspiration**: Grants the player a random assortment of high-tier positive status effects.
-* **Another Chance**: Gifts the player a Totem of Undying.
 
-### Discord Minigames
-Players can gamble on Discord using classic casino games to alter their Minecraft reality. Winning triggers a **Beneficial Event**, while losing triggers a **Malicious Event**.
-* **Supported Games**: Baccarat, Blackjack, Poker, and Dice.
+🖥️ LCD Display Output
+Shows information like game results, server status, or weather.
+
+
+💡 LED Effects
+LEDs react to events like games or alerts.
+
+
+
+💬 Commands
+Player Commands
+
+$dice → Play the dice game
+$daily <name> → Get daily reward
+$status → Check server status
+$help → List all commands
+
+Admin Commands
+
+!<command> → Send Minecraft commands
+Example:
+!gamemode creative
+
+
+
+
+🎲 Dice Game
+
+You roll against a dealer
+Possible results:
+
+✅ Win → Rewards (items, effects)
+❌ Lose → Penalties (poison, mobs, etc.)
+🤝 Draw → No effect
+
+
+
+
+⚡ Hardware (Raspberry Pi)
+
+
+Buttons:
+
+Start / stop server
+Emergency kick
+Trigger actions
+
+
+
+LCD:
+
+Displays messages and info
+
+
+
+LEDs:
+
+Show activity and alerts
+
+
+
+
+🌍 Weather System
+
+Uses an online weather API
+Example locations included:
+
+Luxembourg
+Japan
+
+
+
+Effects:
+
+Updates Minecraft weather (clear, rain, thunder)
+Shows temperature on dashboard
+Displays data on LCD
+
+
+🛠️ Setup
+Requirements
+
+Node-RED
+Minecraft server with RCON enabled
+Discord bot
+Raspberry Pi (optional)
+
+
+Required Node-RED Modules
+Install:
+
+node-red-contrib-discord-advanced
+@tomsith/node-red-contrib-minecraft
+node-red-node-pi-gpio
+node-red-contrib-raspi5-lcd-16x2
+@flowfuse/node-red-dashboard
+node-red-node-tail
+
+
+▶️ How to Run
+
+Import the project JSON into Node-RED
+Configure:
+
+Discord bot token
+RCON server IP and password
+
+
+Deploy the flow
+Start the Minecraft server
+
+
+🔐 Notes
+
+Admin commands are restricted
+Daily rewards have a cooldown
+Hardware features only work with Raspberry Pi
+
+
+📌 Overview
+This system connects everything together:
+
+Discord → user interaction
+Node-RED → logic and automation
+Minecraft → game actions
+Raspberry Pi → physical control
